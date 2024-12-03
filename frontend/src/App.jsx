@@ -11,8 +11,8 @@ function App() {
           <Link to="/">
             <img
               src={logo}
-              width={60}
-              height={60}
+              // width={60}
+              // height={60}
               alt="logo"
               className="w-28 object-contain"
             />
