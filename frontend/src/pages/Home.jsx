@@ -1,15 +1,59 @@
 import { useState, useEffect } from "react";
 import { Card, Loader, FormField } from "../components";
+import { Link, useNavigate } from "react-router-dom";
+import { MdDelete } from "react-icons/md";
+import { CiEdit } from "react-icons/ci";
 
-const RenderCards = ({ data, title }) => {
+const RenderCards = ({ data, title , onDelete}) => {
   if (data?.length > 0) {
-    return data.map((post) => <Card key={post._id} {...post} />);
+    return data.map((post) => (
+      <div
+        key={post._id}
+        className="border rounded-lg shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer"
+        onClick={() => (window.location.href = `/post/${post._id}`)}
+      >
+        {/* Заголовок */}
+        <div className="p-4 border-b">
+          <h3 className="font-bold text-lg text-gray-800">{post.title}</h3>
+        </div>
+        
+        {/* Изображение */}
+        <div className="p-4">
+          {post.image && (
+            <img
+              src={post.image}
+              alt={post.title}
+              className="w-full h-40 object-cover rounded-md"
+            />
+          )}
+        </div>
+        
+        {/* Автор и кнопка "Редактировать" */}
+        <div className="p-4 flex justify-between items-center border-t">
+          <span className="text-sm text-gray-600">Автор: {post.author}</span>
+          <Link
+            to={`/edit-post/${post._id}`}
+            className="font-inter font-medium bg-[#6469ff] text-white px-4 py-2 rounded-md"
+            onClick={(e) => e.stopPropagation()} // Чтобы кнопка "Редактировать" не срабатывала как клик по карточке
+          >
+           <CiEdit />
+          </Link>
+          <button
+            onClick={() => onDelete(post._id)}
+            className="font-inter font-medium bg-red-500 text-white px-4 py-2 rounded-md"
+          >
+           <MdDelete />
+          </button>
+        </div>
+      </div>
+    ));
   }
 
   return (
     <h2 className="mt-5 font-bold text-[#6469ff] text-xl uppercase">{title}</h2>
   );
 };
+
 
 const Home = () => {
   const [loading, setLoading] = useState(false);
@@ -52,6 +96,24 @@ const Home = () => {
     );
   };
 
+  const handleDelete = async (id) => {
+    if (window.confirm("Вы уверены, что хотите удалить эту новость?")) {
+      try {
+        const response = await fetch(`http://localhost:8080/api/v1/posts/${id}`, {
+          method: "DELETE",
+        });
+
+        if (response.ok) {
+          setAllPosts(allPosts.filter((post) => post._id !== id));
+        } else {
+          console.error("Ошибка удаления новости");
+        }
+      } catch (error) {
+        console.error("Ошибка при удалении:", error);
+      }
+    }
+  };
+
   return (
     <section className="max-w-7xl mx-auto">
       <div>
@@ -90,6 +152,7 @@ const Home = () => {
                 <RenderCards
                   data={searchedResults}
                   title="Результаты не найдены"
+                  onDelete={handleDelete}
                 />
               ) : (
                 <RenderCards data={allPosts} title="Нет новостей" />
