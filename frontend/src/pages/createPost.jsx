@@ -23,7 +23,7 @@ const CreatePost = () => {
         reader.onloadend = async () => {
           const base64Image = reader.result;
   
-          const response = await fetch("https://newsblog-hhn3.onrender.com//api/v1/posts", {
+          const response = await fetch("https://newsblog-hhn3.onrender.com/api/v1/posts", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
