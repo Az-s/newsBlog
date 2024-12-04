@@ -16,34 +16,40 @@ const CreatePost = () => {
     e.preventDefault();
     if (form.title && form.content && form.author && form.image) {
       setLoading(true);
-
+  
       try {
-        const formData = new FormData();
-        formData.append("title", form.title);
-        formData.append("content", form.content);
-        formData.append("author", form.author);
-        formData.append("image", form.image);
-
-        const response = await fetch("http://localhost:8080/api/v1/news", {
-          method: "POST",
-          body: formData,
-        });
-
-        if (response.ok) {
-          navigate("/");
-        } else {
-          console.error("Failed to create news post");
-        }
+        const reader = new FileReader();
+        reader.readAsDataURL(form.image);
+        reader.onloadend = async () => {
+          const base64Image = reader.result;
+  
+          const response = await fetch("http://localhost:8080/api/v1/posts", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              title: form.title,
+              content: form.content,
+              author: form.author,
+              image: base64Image, // Передаем Base64 изображение
+            }),
+          });
+  
+          if (response.ok) {
+            navigate("/");
+          } else {
+            console.error("Failed to create news post");
+          }
+        };
       } catch (error) {
         console.error(error);
       } finally {
         setLoading(false);
       }
     } else {
-      alert("Please fill out all fields and upload an image!");
+      alert("Заполните все поля и загрузите изображение!");
     }
   };
-
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
@@ -51,8 +57,13 @@ const CreatePost = () => {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    setForm({ ...form, image: file });
+    if (file) {
+      setForm({ ...form, image: file });
+    } else {
+      alert("Please select an image.");
+    }
   };
+  
 
   return (
     <section className="max-w-7xl mx-auto">

@@ -1,6 +1,6 @@
 import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import CreatePost from "./pages/CreatePost";
+import CreatePost from "./pages/createPost";
 import logo from "./assets/logo.jpeg";
 import "./App.css";
 

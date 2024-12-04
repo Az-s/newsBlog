@@ -1,16 +1,14 @@
 import mongoose from "mongoose";
 
-const connectDB = async (url) => {
-  try {
-    await mongoose.connect(url, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log("MongoDB connected");
-  } catch (error) {
-    console.error("MongoDB connection error:", error);
-    process.exit(1);
-  }
-};
+const PostSchema = new mongoose.Schema(
+  {
+    title: { type: String, required: true },
+    content: { type: String, required: true },
+    author: { type: String, required: true },
+    image: { type: String, required: true }, // Хранение изображения в Base64
+  },
+  { timestamps: true }
+);
 
-export default connectDB;
+const Post = mongoose.model("Post", PostSchema);
+export default Post;

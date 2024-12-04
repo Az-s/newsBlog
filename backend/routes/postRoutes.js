@@ -1,30 +1,19 @@
 import express from "express";
 import Post from "../models/Post.js";
-import { v2 as cloudinary } from "cloudinary";
 
 const router = express.Router();
-
-// Настройка Cloudinary
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
 
 // Создание новости
 router.post("/", async (req, res) => {
   try {
     const { title, content, author, image } = req.body;
 
-    // Загрузка изображения в Cloudinary
-    const uploadedImage = await cloudinary.uploader.upload(image);
+    if (!title || !content || !author || !image) {
+      return res.status(400).json({ error: "Все поля должны быть заполнены!" });
+    }
 
-    const newPost = await Post.create({
-      title,
-      content,
-      author,
-      image: uploadedImage.secure_url,
-    });
+    // Создаем запись в базе данных
+    const newPost = await Post.create({ title, content, author, image });
 
     res.status(201).json(newPost);
   } catch (error) {
