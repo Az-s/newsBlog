@@ -1,14 +1,15 @@
 import mongoose from "mongoose";
 
-const connectDB = (url) => {
-  mongoose.set("strictQuery", true);
-
+const connectDB = async (url) => {
   try {
-    mongoose.connect(url);
-    console.log("connected to mongo");
-  } catch (err) {
-    console.log("failed to connect with mongo");
-    console.log(err);
+    await mongoose.connect(url, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("MongoDB connected");
+  } catch (error) {
+    console.error("MongoDB connection error:", error);
+    process.exit(1);
   }
 };
 
