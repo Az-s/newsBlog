@@ -19,6 +19,23 @@ const Home = () => {
   const [searchedResults, setSearchedResults] = useState(null);
   const [searchTimeOut, setSearchTimeOut] = useState(null);
 
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch("http://localhost:8080/api/v1/posts");
+        const data = await response.json();
+        setAllPosts(data);
+      } catch (error) {
+        console.error("Ошибка загрузки постов:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
   const handleSearchChange = (e) => {
     clearTimeout(searchTimeOut);
     setTextSearch(e.target.value);
@@ -27,8 +44,8 @@ const Home = () => {
       setTimeout(() => {
         const searchResults = allPosts.filter(
           (item) =>
-            item.name.toLowerCase().includes(textSearch.toLowerCase()) ||
-            item.prompt.toLowerCase().includes(textSearch.toLowerCase())
+            item.title.toLowerCase().includes(textSearch.toLowerCase()) ||
+            item.author.toLowerCase().includes(textSearch.toLowerCase())
         );
         setSearchedResults(searchResults);
       }, 500)
@@ -47,10 +64,10 @@ const Home = () => {
       </div>
       <div className="mt-16">
         <FormField
-          labelName="Search posts"
+          labelName="Поиск новостей"
           type="text"
-          name="text"
-          placeholder="Search posts"
+          name="textSearch"
+          placeholder="Введите текст для поиска"
           value={textSearch}
           handleChange={handleSearchChange}
         />
@@ -64,25 +81,25 @@ const Home = () => {
           <>
             {textSearch && (
               <h2 className="font-medium text-[#666e75] text-xl mb-3">
-                Showing results for{" "}
-                <span className="text-[#222328]">{textSearch}</span>
+                Результаты поиска для{" "}
+                <span className="text-[#222328]">"{textSearch}"</span>
               </h2>
             )}
             <div className="grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-3">
               {textSearch ? (
                 <RenderCards
                   data={searchedResults}
-                  title="No search results found"
+                  title="Результаты не найдены"
                 />
               ) : (
-                <RenderCards data={allPosts} title="No posts found" />
+                <RenderCards data={allPosts} title="Нет новостей" />
               )}
             </div>
           </>
         )}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
