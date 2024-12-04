@@ -9,7 +9,7 @@ const ViewPost = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/v1/posts/${id}`);
+        const response = await fetch(`https://newsblog-hhn3.onrender.com//api/v1/posts/${id}`);
         if (response.ok) {
           const data = await response.json();
           setPost(data);

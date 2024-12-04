@@ -18,7 +18,7 @@ const EditPost = () => {
     const fetchPost = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`http://localhost:8080/api/v1/posts/${id}`);
+        const response = await fetch(`https://newsblog-hhn3.onrender.com//api/v1/posts/${id}`);
         const data = await response.json();
         setForm({
           title: data.title,
@@ -52,7 +52,7 @@ const EditPost = () => {
           formData.append("image", form.image);
         }
 
-        const response = await fetch(`http://localhost:8080/api/v1/posts/${id}`, {
+        const response = await fetch(`https://newsblog-hhn3.onrender.com//api/v1/posts/${id}`, {
           method: "PUT",
           body: formData,
         });

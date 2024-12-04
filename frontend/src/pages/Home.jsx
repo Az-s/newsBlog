@@ -67,7 +67,7 @@ const Home = () => {
     const fetchPosts = async () => {
       setLoading(true);
       try {
-        const response = await fetch("http://localhost:8080/api/v1/posts");
+        const response = await fetch("https://newsblog-hhn3.onrender.com/api/v1/posts");
         const data = await response.json();
         setAllPosts(data);
       } catch (error) {
@@ -99,7 +99,7 @@ const Home = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Вы уверены, что хотите удалить эту новость?")) {
       try {
-        const response = await fetch(`http://localhost:8080/api/v1/posts/${id}`, {
+        const response = await fetch(`https://newsblog-hhn3.onrender.com/api/v1/posts/${id}`, {
           method: "DELETE",
         });
 
