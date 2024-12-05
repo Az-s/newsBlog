@@ -76,19 +76,23 @@ router.put("/:id", upload.single("image"), async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
+    console.log(`Удаление новости с id: ${id}`);
 
     const deletedPost = await Post.findByIdAndDelete(id);
 
     if (!deletedPost) {
+      console.log(`Новость с id: ${id} не найдена`);
       return res.status(404).json({ error: "Новость не найдена" });
     }
 
+    console.log(`Новость с id: ${id} успешно удалена`);
     res.status(200).json({ message: "Новость успешно удалена" });
   } catch (error) {
     console.error("Ошибка при удалении новости:", error);
     res.status(500).json({ error: "Ошибка сервера при удалении новости" });
   }
 });
+
 
 // Получение всех новостей
 router.get("/", async (req, res) => {
@@ -102,3 +106,4 @@ router.get("/", async (req, res) => {
 });
 
 export default router;
+https://newsblog-hhn3.onrender.com/api/v1/posts/67501e9d45fe346b9cf479a4

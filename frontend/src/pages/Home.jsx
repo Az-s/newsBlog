@@ -34,12 +34,12 @@ const RenderCards = ({ data, title, onDelete }) => {
           <Link
             to={`/edit-post/${post._id}`}
             className="font-inter font-medium bg-[#6469ff] text-white px-4 py-2 rounded-md"
-            onClick={(e) => e.stopPropagation()} // Чтобы кнопка "Редактировать" не срабатывала как клик по карточке
+            onClick={(e) => e.stopPropagation()} 
           >
             <CiEdit />
           </Link>
           <button
-            onClick={() => onDelete(post._id)}
+            onClick={(e) => { e.stopPropagation(); onDelete(post._id); }}
             className="font-inter font-medium bg-red-500 text-white px-4 py-2 rounded-md"
           >
             <MdDelete />
@@ -107,10 +107,10 @@ const Home = () => {
             method: "DELETE",
           }
         );
-
+  
         if (response.ok) {
           setAllPosts(allPosts.filter((post) => post._id !== id));
-          navigate(`/`);
+          navigate(`/`); 
         } else {
           console.error("Ошибка удаления новости");
         }
@@ -119,6 +119,7 @@ const Home = () => {
       }
     }
   };
+  
 
   return (
     <section className="max-w-7xl mx-auto">
@@ -161,7 +162,7 @@ const Home = () => {
                   onDelete={handleDelete}
                 />
               ) : (
-                <RenderCards data={allPosts} title="Нет новостей" />
+                <RenderCards data={allPosts} title="Нет новостей" onDelete={handleDelete} />
               )}
             </div>
           </>
