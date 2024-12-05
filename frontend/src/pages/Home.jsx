@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { Card, Loader, FormField } from "../components";
-import { Link, useNavigate } from "react-router-dom";
+import { Loader, FormField } from "../components";
+import { Link } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
 
-const RenderCards = ({ data, title , onDelete}) => {
+const RenderCards = ({ data, title, onDelete }) => {
   if (data?.length > 0) {
     return data.map((post) => (
       <div
@@ -16,7 +16,7 @@ const RenderCards = ({ data, title , onDelete}) => {
         <div className="p-4 border-b">
           <h3 className="font-bold text-lg text-gray-800">{post.title}</h3>
         </div>
-        
+
         {/* Изображение */}
         <div className="p-4">
           {post.image && (
@@ -27,7 +27,7 @@ const RenderCards = ({ data, title , onDelete}) => {
             />
           )}
         </div>
-        
+
         {/* Автор и кнопка "Редактировать" */}
         <div className="p-4 flex justify-between items-center border-t">
           <span className="text-sm text-gray-600">Автор: {post.author}</span>
@@ -36,13 +36,13 @@ const RenderCards = ({ data, title , onDelete}) => {
             className="font-inter font-medium bg-[#6469ff] text-white px-4 py-2 rounded-md"
             onClick={(e) => e.stopPropagation()} // Чтобы кнопка "Редактировать" не срабатывала как клик по карточке
           >
-           <CiEdit />
+            <CiEdit />
           </Link>
           <button
             onClick={() => onDelete(post._id)}
             className="font-inter font-medium bg-red-500 text-white px-4 py-2 rounded-md"
           >
-           <MdDelete />
+            <MdDelete />
           </button>
         </div>
       </div>
@@ -53,7 +53,6 @@ const RenderCards = ({ data, title , onDelete}) => {
     <h2 className="mt-5 font-bold text-[#6469ff] text-xl uppercase">{title}</h2>
   );
 };
-
 
 const Home = () => {
   const [loading, setLoading] = useState(false);
@@ -67,7 +66,9 @@ const Home = () => {
     const fetchPosts = async () => {
       setLoading(true);
       try {
-        const response = await fetch("https://newsblog-hhn3.onrender.com/api/v1/posts");
+        const response = await fetch(
+          "https://newsblog-hhn3.onrender.com/api/v1/posts"
+        );
         const data = await response.json();
         setAllPosts(data);
       } catch (error) {
@@ -99,9 +100,12 @@ const Home = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Вы уверены, что хотите удалить эту новость?")) {
       try {
-        const response = await fetch(`https://newsblog-hhn3.onrender.com/api/v1/posts/${id}`, {
-          method: "DELETE",
-        });
+        const response = await fetch(
+          `https://newsblog-hhn3.onrender.com/api/v1/posts/${id}`,
+          {
+            method: "DELETE",
+          }
+        );
 
         if (response.ok) {
           setAllPosts(allPosts.filter((post) => post._id !== id));

@@ -37,6 +37,8 @@ const EditPost = () => {
     fetchPost();
   }, [id]);
 
+  console.log(id)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (form.title && form.content && form.author) {
