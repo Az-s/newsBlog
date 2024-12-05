@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Loader, FormField } from "../components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
 
@@ -55,6 +55,7 @@ const RenderCards = ({ data, title, onDelete }) => {
 };
 
 const Home = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [allPosts, setAllPosts] = useState(null);
 
@@ -109,6 +110,7 @@ const Home = () => {
 
         if (response.ok) {
           setAllPosts(allPosts.filter((post) => post._id !== id));
+          navigate(`/`);
         } else {
           console.error("Ошибка удаления новости");
         }
