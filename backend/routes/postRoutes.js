@@ -1,5 +1,7 @@
 import express from "express";
 import Post from "../models/Post.js";
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 
 const router = express.Router();
 
@@ -40,14 +42,23 @@ router.get("/:id", async (req, res) => {
 });
 
 // Редактирование новости
-router.put("/:id", async (req, res) => {
+router.put("/:id", upload.single("image"), async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, content, author, image } = req.body;
+    const { title, content, author } = req.body;
+
+    // Проверяем, было ли загружено новое изображение
+    const image = req.file ? `/uploads/${req.file.filename}` : undefined;
+
+    // Обновляем пост
+    const updatedData = { title, content, author };
+    if (image) {
+      updatedData.image = image;
+    }
 
     const updatedPost = await Post.findByIdAndUpdate(
       id,
-      { title, content, author, image },
+      updatedData,
       { new: true } // Возвращает обновленный объект
     );
 
