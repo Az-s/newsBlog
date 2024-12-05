@@ -14,7 +14,7 @@ app.use(express.json({ limit: "10mb" })); // Увеличенный лимит �
 app.use("/api/v1/posts", postRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Сервер работает!");
+  res.send("Сервер работает! 1");
 });
 
 const startServer = async () => {
