@@ -73,6 +73,23 @@ router.put("/:id", upload.single("image"), async (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deletedPost = await Post.findByIdAndDelete(id);
+
+    if (!deletedPost) {
+      return res.status(404).json({ error: "Новость не найдена" });
+    }
+
+    res.status(200).json({ message: "Новость успешно удалена" });
+  } catch (error) {
+    console.error("Ошибка при удалении новости:", error);
+    res.status(500).json({ error: "Ошибка сервера при удалении новости" });
+  }
+});
+
 // Получение всех новостей
 router.get("/", async (req, res) => {
   try {
