@@ -109,7 +109,8 @@ const Home = () => {
         );
   
         if (response.ok) {
-          setAllPosts(allPosts.filter((post) => post._id !== id));
+          // setAllPosts(allPosts.filter((post) => post._id !== id));
+          setAllPosts((prevPosts) => prevPosts.filter((post) => post._id !== id));
           navigate(`/`); 
         } else {
           console.error("Ошибка удаления новости");
