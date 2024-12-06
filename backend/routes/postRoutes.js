@@ -106,4 +106,3 @@ router.get("/", async (req, res) => {
 });
 
 export default router;
-https://newsblog-hhn3.onrender.com/api/v1/posts/67501e9d45fe346b9cf479a4
