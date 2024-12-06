@@ -25,7 +25,8 @@ const startServer = async () => {
     });
 
     console.log("MongoDB подключена");
-    app.listen(8080, () => console.log("Сервер запущен на http://localhost:8080"));
+    const PORT = process.env.PORT || 8080
+    app.listen(PORT, () => console.log("Сервер запущен на http://localhost:8080"));
   } catch (error) {
     console.error("Ошибка подключения к MongoDB", error);
   }
