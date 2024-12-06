@@ -1,6 +1,6 @@
 import express from "express";
 import Post from "../models/Post.js";
-const multer = require("multer");
+import multer from "multer";
 const upload = multer({ dest: "uploads/" });
 
 const router = express.Router();
