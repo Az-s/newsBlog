@@ -27,7 +27,7 @@ const menus = [
   {
     title: "Пресс служба",
     links: [
-      { label: "НОВОСТИ", to: "/menu3/option1" },
+      { label: "НОВОСТИ", to: "/press/news" },
       { label: "Статьи", to: "/menu3/option2" },
       { label: "Фото альбом ", to: "/menu3/option3" },
       { label: "Видео альбом  ", to: "/menu3/option3" },

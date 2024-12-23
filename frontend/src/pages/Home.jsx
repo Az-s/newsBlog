@@ -5,12 +5,13 @@ import { MdDelete } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
 
 const RenderCards = ({ data, title, onDelete }) => {
+  const navigate = useNavigate();
   if (data?.length > 0) {
     return data.map((post) => (
       <div
         key={post._id}
         className="border border-gray-400 rounded-lg shadow-md hover:shadow-xl hover:translate-y-1 transition-all duration-200 cursor-pointer min-h-90"
-        onClick={() => (window.location.href = `/post/${post._id}`)}
+        onClick={() => navigate(`/post/${post._id}`)} 
       >
         {/* Заголовок */}
         <div className="p-4 border-b border-gray-400">
@@ -118,7 +119,7 @@ const Home = () => {
           setAllPosts((prevPosts) =>
             prevPosts.filter((post) => post._id !== id)
           );
-          navigate(`/`);
+          navigate(`/press/news`);
         } else {
           console.error("Ошибка удаления новости");
         }
