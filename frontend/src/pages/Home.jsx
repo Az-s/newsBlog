@@ -31,19 +31,24 @@ const RenderCards = ({ data, title, onDelete }) => {
         {/* Автор и кнопка "Редактировать" */}
         <div className="p-4 flex justify-between items-center border-t">
           <span className="text-sm text-gray-600">Автор: {post.author}</span>
-          <Link
-            to={`/edit-post/${post._id}`}
-            className="font-inter font-medium bg-[#6469ff] text-white px-4 py-2 rounded-md"
-            onClick={(e) => e.stopPropagation()} 
-          >
-            <CiEdit />
-          </Link>
-          <button
-            onClick={(e) => { e.stopPropagation(); onDelete(post._id); }}
-            className="font-inter font-medium bg-red-500 text-white px-4 py-2 rounded-md"
-          >
-            <MdDelete />
-          </button>
+          <div className="flex gap-2">
+            <Link
+              to={`/edit-post/${post._id}`}
+              className="font-inter font-medium bg-[#6469ff] text-white px-4 py-2 rounded-md"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <CiEdit />
+            </Link>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onDelete(post._id);
+              }}
+              className="font-inter font-medium bg-red-500 text-white px-4 py-2 rounded-md"
+            >
+              <MdDelete />
+            </button>
+          </div>
         </div>
       </div>
     ));
@@ -107,11 +112,13 @@ const Home = () => {
             method: "DELETE",
           }
         );
-  
+
         if (response.ok) {
           // setAllPosts(allPosts.filter((post) => post._id !== id));
-          setAllPosts((prevPosts) => prevPosts.filter((post) => post._id !== id));
-          navigate(`/`); 
+          setAllPosts((prevPosts) =>
+            prevPosts.filter((post) => post._id !== id)
+          );
+          navigate(`/`);
         } else {
           console.error("Ошибка удаления новости");
         }
@@ -120,7 +127,6 @@ const Home = () => {
       }
     }
   };
-  
 
   return (
     <section className="max-w-7xl mx-auto">
@@ -163,7 +169,11 @@ const Home = () => {
                   onDelete={handleDelete}
                 />
               ) : (
-                <RenderCards data={allPosts} title="Нет новостей" onDelete={handleDelete} />
+                <RenderCards
+                  data={allPosts}
+                  title="Нет новостей"
+                  onDelete={handleDelete}
+                />
               )}
             </div>
           </>

@@ -66,15 +66,15 @@ const CreatePost = () => {
   
 
   return (
-    <section className="max-w-7xl mx-auto">
-      <div>
+    <section className="max-w-7xl">
+      <div className="flex flex-col justify-center w-full">
         <h1 className="font-extrabold text-[#222328] text-[32px]">Создать новость</h1>
-        <p className="mt-2 text-[#666e75] text-[16px] max-w-[500px]">
+        <p className="mt-2 text-[#666e75] text-[16px]">
           Создайте новую запись, чтобы поделиться ею с другими.
         </p>
       </div>
 
-      <form className="mt-16 max-w-3xl" onSubmit={handleSubmit}>
+      <form className="mt-16 w-full flex flex-col justify-center" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-5">
           <FormField
             labelName="Заголовок"

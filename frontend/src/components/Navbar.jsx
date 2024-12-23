@@ -120,7 +120,7 @@ const Navbar = () => {
             </button>
 
             {openMegaMenu === "home" && (
-              <ul className="absolute left-0 top-full shadow-lg rounded-lg p-4 z-20 w-72 border border-gray-200 space-y-2">
+              <ul className="absolute left-0 top-full bg-white shadow-lg rounded-lg p-4 z-20 w-72 border border-gray-200 space-y-2">
                 <li>
                   <button
                     onClick={() => scrollToSection("section1")}
