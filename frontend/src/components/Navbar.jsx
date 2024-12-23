@@ -52,7 +52,10 @@ const menus = [
       { label: "Закон КР об Общественных Объединениях", to: "/menu5/option3" },
       { label: "О дружбе ", to: "/menu5/option1" },
       { label: "Интересные факты о КНР", to: "/menu5/option2" },
-      { label: "История дипломатических отношений КР и КНР", to: "/menu5/option3" },
+      {
+        label: "История дипломатических отношений КР и КНР",
+        to: "/menu5/option3",
+      },
     ],
   },
   {
@@ -115,8 +118,11 @@ const Navbar = () => {
             onMouseEnter={() => toggleMegaMenu("home")}
             onMouseLeave={() => toggleMegaMenu(null)}
           >
-            <button className="font-inter font-medium text-gray-700 hover:text-blue-600 transition whitespace-nowrap">
-              Главная
+            <button
+              to="Link"
+              className="font-inter font-medium text-gray-700 hover:text-blue-600 transition whitespace-nowrap"
+            >
+              <Link to="/">Главная</Link>
             </button>
 
             {openMegaMenu === "home" && (
