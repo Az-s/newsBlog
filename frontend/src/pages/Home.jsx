@@ -9,11 +9,11 @@ const RenderCards = ({ data, title, onDelete }) => {
     return data.map((post) => (
       <div
         key={post._id}
-        className="border rounded-lg shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer"
+        className="border border-gray-400 rounded-lg shadow-md hover:shadow-xl hover:translate-y-1 transition-all duration-200 cursor-pointer min-h-90"
         onClick={() => (window.location.href = `/post/${post._id}`)}
       >
         {/* Заголовок */}
-        <div className="p-4 border-b">
+        <div className="p-4 border-b border-gray-400">
           <h3 className="font-bold text-lg text-gray-800">{post.title}</h3>
         </div>
 
@@ -23,13 +23,13 @@ const RenderCards = ({ data, title, onDelete }) => {
             <img
               src={post.image}
               alt={post.title}
-              className="w-full h-40 object-cover rounded-md"
+              className="w-full max-h-80 object-cover rounded-md"
             />
           )}
         </div>
 
         {/* Автор и кнопка "Редактировать" */}
-        <div className="p-4 flex justify-between items-center border-t">
+        <div className="p-4 flex justify-between items-center border-t border-gray-400">
           <span className="text-sm text-gray-600">Автор: {post.author}</span>
           <div className="flex gap-2">
             <Link
@@ -131,10 +131,10 @@ const Home = () => {
   return (
     <section className="max-w-7xl mx-auto">
       <div>
-        <h1 className="font-extrabold text-[#222328] text-[32px]">
+        <h1 className="font-extrabold  text-[#222328] text-[32px]">
           Кыргызстан-Кытай Достук Коому
         </h1>
-        <p className="mt-2 text-[#666e75] text-[16px] max-w-[500px]">
+        <p className="mt-2 text-[#666e75] text-[20px]">
           Коомдук Бирикмеси
         </p>
       </div>
