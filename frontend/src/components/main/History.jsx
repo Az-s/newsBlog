@@ -1,6 +1,6 @@
 const History = () => {
   return (
-    <div className="bg-gray-100 text-white p-10 rounded-lg shadow-md text-left md:h-[50vh]">
+    <section className="bg-gray-100 text-white p-10 rounded-lg shadow-md text-left md:h-[50vh]">
       {" "}
       <h2 className="text-2xl font-bold text-gray-800 py-6 text-center">
         История создания
@@ -24,7 +24,7 @@ const History = () => {
         <li>Калдыбек уулу Тимур</li>
         <li>Сабыров Жолдубек Жыргалбекович</li>
       </ul>
-    </div>
+    </section>
   );
 };
 
