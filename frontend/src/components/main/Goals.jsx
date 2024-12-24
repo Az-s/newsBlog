@@ -2,7 +2,7 @@
 const Goals = () => {
   return (
     <div className="bg-gray-50 text-white p-10 rounded-lg shadow-md text-left">
-         <h2 className="text-2xl font-bold text-gray-800 py-6 text-center">Цели Общества Дружбы</h2>
+         <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">Цели Общества Дружбы</h2>
       <p className="text-gray-700 mb-4 font-medium">
         Основной целью Объединения является:
       </p>
