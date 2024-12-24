@@ -9,10 +9,10 @@ const Main = () => {
   return (
     <main  className="container mx-auto space-y-6">
       <Carousel />
-      <Information />
       <History />
-      <Intro />
+      <Information />
       <Mission />
+      <Intro />
       <Goals />
     </main>
   );

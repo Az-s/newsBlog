@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import logo from "../assets/logo.jpeg"; // Укажите путь к логотипу
 
 const menus = [
@@ -128,44 +129,54 @@ const Navbar = () => {
             {openMegaMenu === "home" && (
               <ul className="absolute left-0 top-full bg-white shadow-lg rounded-lg p-4 z-20 w-72 border border-gray-200 space-y-2">
                 <li>
-                  <button
-                    onClick={() => scrollToSection("section1")}
-                    className="block text-gray-700 hover:text-white hover:bg-blue-600 rounded-md px-3 py-2 transition text-left"
-                  >
-                    Информация об обществе дружбы
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() => scrollToSection("section2")}
-                    className="block text-gray-700 hover:text-white hover:bg-blue-600 rounded-md px-3 py-2 transition text-left"
+                  <ScrollLink
+                    to="section1"
+                    smooth={true}
+                    duration={500}
+                    className="block text-gray-700 hover:text-white hover:bg-blue-600 rounded-md px-3 py-2 transition text-left cursor-pointer"
                   >
                     История создания
-                  </button>
+                  </ScrollLink>
                 </li>
                 <li>
-                  <button
-                    onClick={() => scrollToSection("section3")}
-                    className="block text-gray-700 hover:text-white hover:bg-blue-600 rounded-md px-3 py-2 transition text-left"
+                  <ScrollLink
+                    to="section2"
+                    smooth={true}
+                    duration={500}
+                    className="block text-gray-700 hover:text-white hover:bg-blue-600 rounded-md px-3 py-2 transition text-left cursor-pointer"
                   >
-                    Заявление о вступлении в общество дружбы
-                  </button>
+                    Информация об обществе дружбы
+                  </ScrollLink>
                 </li>
                 <li>
-                  <button
-                    onClick={() => scrollToSection("section3")}
-                    className="block text-gray-700 hover:text-white hover:bg-blue-600 rounded-md px-3 py-2 transition text-left"
+                  <ScrollLink
+                    to="section3"
+                    smooth={true}
+                    duration={500}
+                    className="block text-gray-700 hover:text-white hover:bg-blue-600 rounded-md px-3 py-2 transition text-left cursor-pointer"
                   >
                     Миссия общества дружбы
-                  </button>
+                  </ScrollLink>
                 </li>
                 <li>
-                  <button
-                    onClick={() => scrollToSection("section3")}
-                    className="block text-gray-700 hover:text-white hover:bg-blue-600 rounded-md px-3 py-2 transition text-left"
+                  <ScrollLink
+                    to="section4"
+                    smooth={true}
+                    duration={500}
+                    className="block text-gray-700 hover:text-white hover:bg-blue-600 rounded-md px-3 py-2 transition text-left cursor-pointer"
+                  >
+                    Заявление о вступлении в общество дружбы
+                  </ScrollLink>
+                </li>
+                <li>
+                  <ScrollLink
+                    to="section5"
+                    smooth={true}
+                    duration={500}
+                    className="block text-gray-700 hover:text-white hover:bg-blue-600 rounded-md px-3 py-2 transition text-left cursor-pointer"
                   >
                     Цели общества дружбы
-                  </button>
+                  </ScrollLink>
                 </li>
               </ul>
             )}

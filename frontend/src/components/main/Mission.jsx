@@ -1,7 +1,7 @@
 
 const Mission = () => {
   return (
-    <div className="bg-gray-50 text-white p-10 rounded-lg shadow-md">
+    <div id="section3" className="bg-gray-50 text-white p-10 rounded-lg shadow-md">
        <h2 className="text-2xl font-bold text-gray-800 mb-4">Миссия Общества Дружбы</h2>
       <ul className="list-disc list-inside text-gray-700 space-y-3 text-left">
         <li>
