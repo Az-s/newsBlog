@@ -7,14 +7,14 @@ import Mission from "../components/main/Mission";
 
 const Main = () => {
   return (
-    <section  className="container mx-auto space-y-6">
+    <main  className="container mx-auto space-y-6">
       <Carousel />
       <Information />
       <History />
       <Intro />
       <Mission />
       <Goals />
-    </section>
+    </main>
   );
 };
 

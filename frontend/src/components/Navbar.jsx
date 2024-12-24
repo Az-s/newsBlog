@@ -84,7 +84,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="w-full shadow-md bg-gray-100 border-b border-b-[#e6ebf4] z-50 relative">
+    <header className="w-full shadow-md bg-gray-50 border-b border-b-[#e6ebf4] z-50 relative">
       <div className="max-w-7xl mx-auto flex justify-between items-center sm:px-8 px-4 py-4">
         <Link to="/">
           <img src={logo} alt="logo" className="w-28 object-contain" />
