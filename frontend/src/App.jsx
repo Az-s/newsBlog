@@ -6,6 +6,7 @@ import ViewPost from "./components/Viewpost";
 import EditPost from "./components/EditPost";
 import CreatePost from "./pages/createPost";
 import "./App.css";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/edit-post/:id" element={<EditPost />} />
         </Routes>
       </main>
+      <Footer />
     </BrowserRouter>
   );
 }
